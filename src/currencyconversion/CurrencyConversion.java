@@ -5,11 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -31,7 +27,7 @@ public class CurrencyConversion extends Application {
     
     private final int SCENE_WIDTH = 400;
     private final int SCENE_HEIGHT = 250;
-    private final Insets INSET = new Insets(5, 5, 5, 5);
+    private final Insets INSET = new Insets(5);
     
     
     @Override
@@ -89,7 +85,7 @@ public class CurrencyConversion extends Application {
         currencyInformation.getChildren().add(setUpTimeInformation());
         currencyInformation.getChildren().add(setUpNumberOfCompoundingsInformation());
         currencyInformation.getChildren().add(setUpAmountInformation());
-        currencyInformation.setSpacing(1);
+        currencyInformation.setFillWidth(true);
         
         return currencyInformation;
     }
@@ -104,6 +100,8 @@ public class CurrencyConversion extends Application {
         HBox principalInformation = new HBox();
         principalInformation.getChildren().add(principalName);
         principalInformation.getChildren().add(principalValue);
+        principalInformation.setPrefWidth(320);
+        principalName.setPrefWidth(principalInformation.getPrefWidth()/2);
         
         return principalInformation;
     }
@@ -118,6 +116,8 @@ public class CurrencyConversion extends Application {
         HBox rateInformation = new HBox();
         rateInformation.getChildren().add(rateName);
         rateInformation.getChildren().add(rateValue);
+        rateInformation.setPrefWidth(320);
+        rateName.setPrefWidth(rateInformation.getPrefWidth()/2);
         
         return rateInformation;
     }
@@ -132,6 +132,8 @@ public class CurrencyConversion extends Application {
         HBox timeInformation = new HBox();
         timeInformation.getChildren().add(timeName);
         timeInformation.getChildren().add(timeValue);
+        timeInformation.setPrefWidth(320);
+        timeName.setPrefWidth(timeInformation.getPrefWidth()/2);
         
         return timeInformation;
     }
@@ -146,6 +148,8 @@ public class CurrencyConversion extends Application {
         HBox numberOfCompoundingsInformation = new HBox();
         numberOfCompoundingsInformation.getChildren().add(numberOfCompoundingsName);
         numberOfCompoundingsInformation.getChildren().add(numberOfCompoundingsValue);
+        numberOfCompoundingsInformation.setPrefWidth(320);
+        numberOfCompoundingsName.setPrefWidth(numberOfCompoundingsInformation.getPrefWidth()/2);
         
         return numberOfCompoundingsInformation;
     }
@@ -159,6 +163,8 @@ public class CurrencyConversion extends Application {
         HBox amountInformation = new HBox();
         amountInformation.getChildren().add(amountName);
         amountInformation.getChildren().add(amountValue);
+        amountInformation.setPrefWidth(320);
+        amountName.setPrefWidth(amountInformation.getPrefWidth()/2);
         
         return amountInformation;
     }
