@@ -59,6 +59,7 @@ public class CurrencyConversion extends Application {
         launch(args);
     }
     
+    //sets up the box
     private void drawVisualInterface(){
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(setUpCurrencyChoices());
@@ -68,22 +69,24 @@ public class CurrencyConversion extends Application {
         scene = new Scene(borderPane, sceneWidth, sceneHeight);
     }
     
+    //choices between radio buttons future value and present value
     private HBox setUpCurrencyChoices(){
         FutureValueChoice = new RadioButton("Future Value");
-        RadioButton dollarsChoice = new RadioButton("Present Value");
+        RadioButton presentChoice = new RadioButton("Present Value");
         FutureValueChoice.setSelected(true);
         
         ToggleGroup tg = new ToggleGroup();
         FutureValueChoice.setToggleGroup(tg);
-        dollarsChoice.setToggleGroup(tg);
+        presentChoice.setToggleGroup(tg);
         
         HBox currencyChoices = new HBox();
         currencyChoices.getChildren().add(FutureValueChoice);
-        currencyChoices.getChildren().add(dollarsChoice);
+        currencyChoices.getChildren().add(presentChoice);
         
         return currencyChoices;
     }
     
+    //dont think its needed but keeping just incase it is
     private VBox setUpCurrencyInformation(){
         VBox currencyInformation = new VBox();
         currencyInformation.getChildren().add(setUpPoundsInformation());
@@ -92,6 +95,7 @@ public class CurrencyConversion extends Application {
         return currencyInformation;
     }
     
+    //Principal text area
     private HBox setUpPrincipalInformation(){
         Label principalName = new Label("Principal");
         principalValue = new TextField(principalString);
@@ -103,6 +107,7 @@ public class CurrencyConversion extends Application {
         return principalInformation;
     }
     
+    //Rate text area
     private HBox setUpRateInformation(){
         Label rateName = new Label("Rate");
         rateValue = new TextField(rateString);
@@ -114,6 +119,7 @@ public class CurrencyConversion extends Application {
         return rateInformation;
     }
     
+    //Time text area
     private HBox setUpTimeInformation(){
         Label timeName = new Label("Time");
         timeValue = new TextField(timeString);
@@ -125,6 +131,7 @@ public class CurrencyConversion extends Application {
         return timeInformation;
     }
     
+    //Number of Compoundings text area
     private HBox setUpNumberOfCompoundingsInformation(){
         Label numberOfCompoundingsName = new Label("Number Of Compoundings");
         numberOfCompoundingsValue = new TextField(numberOfCompoundingsString);
@@ -136,6 +143,7 @@ public class CurrencyConversion extends Application {
         return numberOfCompoundingsInformation;
     }
     
+    //Amount text area
     private HBox setUpAmountInformation(){
         Label amountName = new Label("Amount");
         amountValue = new TextField(amountString);
@@ -147,6 +155,7 @@ public class CurrencyConversion extends Application {
         return amountInformation;
     }
     
+    //needs calculations for future value and present value
     private void Calculate(double dollarsPerPound, double poundsPerDollars){
         if(FutureValueChoice.isSelected()){
             double dollars = Double.parseDouble(dollarsValue.getText());
