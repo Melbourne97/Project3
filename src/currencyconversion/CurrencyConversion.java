@@ -17,15 +17,22 @@ import javafx.stage.Stage;
 public class CurrencyConversion extends Application {
     
     private Scene scene;
-    private Button convert;
-    private TextField poundsValue;
-    private TextField dollarsValue;
-    private RadioButton poundsChoice;
+    private Button calculate;
+    private RadioButton FutureValueChoice;
+    private String principalString;
+    private TextField principalValue;
+    private String rateString;
+    private TextField rateValue;
+    private String timeString;
+    private TextField timeValue;
+    private String numberOfCompoundingsString;
+    private TextField numberOfCompoundingsValue;
+    private String amountString;
+    private TextField amountValue;
     
-    private final int sceneWidth = 300;
-    private final int sceneHeight = 200;
-    private final String poundsString = "1";
-    private final String dollarsString = "1.31";
+    private final int sceneWidth = 500;
+    private final int sceneHeight = 400;
+    
     
     @Override
     public void start(Stage primaryStage) {
@@ -34,7 +41,7 @@ public class CurrencyConversion extends Application {
         
         drawVisualInterface();
         
-        convert.setOnAction(new EventHandler<ActionEvent>(){
+        calculate.setOnAction(new EventHandler<ActionEvent>(){
             
             @Override
             public void handle(ActionEvent event){
@@ -42,7 +49,7 @@ public class CurrencyConversion extends Application {
             }
         });
         
-        primaryStage.setTitle("Currency conversionL");
+        primaryStage.setTitle("Financial App");
         primaryStage.setScene(scene);
         
         primaryStage.show();
@@ -56,22 +63,22 @@ public class CurrencyConversion extends Application {
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(setUpCurrencyChoices());
         borderPane.setCenter(setUpCurrencyInformation());
-        convert = new Button("Convert");
-        borderPane.setBottom(convert);
+        calculate = new Button("Calculate");
+        borderPane.setBottom(calculate);
         scene = new Scene(borderPane, sceneWidth, sceneHeight);
     }
     
     private HBox setUpCurrencyChoices(){
-        poundsChoice = new RadioButton("Pounds");
-        RadioButton dollarsChoice = new RadioButton("Dollars");
-        poundsChoice.setSelected(true);
+        FutureValueChoice = new RadioButton("Future Value");
+        RadioButton dollarsChoice = new RadioButton("Present Value");
+        FutureValueChoice.setSelected(true);
         
         ToggleGroup tg = new ToggleGroup();
-        poundsChoice.setToggleGroup(tg);
+        FutureValueChoice.setToggleGroup(tg);
         dollarsChoice.setToggleGroup(tg);
         
         HBox currencyChoices = new HBox();
-        currencyChoices.getChildren().add(poundsChoice);
+        currencyChoices.getChildren().add(FutureValueChoice);
         currencyChoices.getChildren().add(dollarsChoice);
         
         return currencyChoices;
@@ -85,30 +92,63 @@ public class CurrencyConversion extends Application {
         return currencyInformation;
     }
     
-    private HBox setUpPoundsInformation(){
-        Label poundsName = new Label("Pounds");
-        poundsValue = new TextField(poundsString);
+    private HBox setUpPrincipalInformation(){
+        Label principalName = new Label("Principal");
+        principalValue = new TextField(principalString);
         
-        HBox poundsInformation = new HBox();
-        poundsInformation.getChildren().add(poundsName);
-        poundsInformation.getChildren().add(poundsValue);
+        HBox principalInformation = new HBox();
+        principalInformation.getChildren().add(principalName);
+        principalInformation.getChildren().add(principalValue);
         
-        return poundsInformation;
+        return principalInformation;
     }
     
-    private HBox setUpDollarsInformation(){
-        Label dollarsName = new Label("Dollars");
-        dollarsValue = new TextField(dollarsString);
+    private HBox setUpRateInformation(){
+        Label rateName = new Label("Rate");
+        rateValue = new TextField(rateString);
         
-        HBox dollarsInformation = new HBox();
-        dollarsInformation.getChildren().add(dollarsName);
-        dollarsInformation.getChildren().add(dollarsValue);
+        HBox rateInformation = new HBox();
+        rateInformation.getChildren().add(rateName);
+        rateInformation.getChildren().add(rateValue);
         
-        return dollarsInformation;
+        return rateInformation;
     }
     
-    private void convertCurrency(double dollarsPerPound, double poundsPerDollars){
-        if(poundsChoice.isSelected()){
+    private HBox setUpTimeInformation(){
+        Label timeName = new Label("Time");
+        timeValue = new TextField(timeString);
+        
+        HBox timeInformation = new HBox();
+        timeInformation.getChildren().add(timeName);
+        timeInformation.getChildren().add(timeValue);
+        
+        return timeInformation;
+    }
+    
+    private HBox setUpNumberOfCompoundingsInformation(){
+        Label numberOfCompoundingsName = new Label("Number Of Compoundings");
+        numberOfCompoundingsValue = new TextField(numberOfCompoundingsString);
+        
+        HBox numberOfCompoundingsInformation = new HBox();
+        numberOfCompoundingsInformation.getChildren().add(numberOfCompoundingsName);
+        numberOfCompoundingsInformation.getChildren().add(numberOfCompoundingsValue);
+        
+        return numberOfCompoundingsInformation;
+    }
+    
+    private HBox setUpAmountInformation(){
+        Label amountName = new Label("Amount");
+        amountValue = new TextField(amountString);
+        
+        HBox amountInformation = new HBox();
+        amountInformation.getChildren().add(amountName);
+        amountInformation.getChildren().add(amountValue);
+        
+        return amountInformation;
+    }
+    
+    private void Calculate(double dollarsPerPound, double poundsPerDollars){
+        if(FutureValueChoice.isSelected()){
             double dollars = Double.parseDouble(dollarsValue.getText());
             double pounds = poundsPerDollars * dollars;
             poundsValue.setText(String.valueOf(pounds));
