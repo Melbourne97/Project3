@@ -41,6 +41,11 @@ public class CurrencyConversion extends Application {
                 convertCurrency(dollarsPerPound, poundsPerDollars);
             }
         });
+        
+        primaryStage.setTitle("Currency conversionL");
+        primaryStage.setScene(scene);
+        
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
@@ -83,7 +88,6 @@ public class CurrencyConversion extends Application {
     private HBox setUpPoundsInformation(){
         Label poundsName = new Label("Pounds");
         poundsValue = new TextField(poundsString);
-        //poundsName.setPadding(inset);
         
         HBox poundsInformation = new HBox();
         poundsInformation.getChildren().add(poundsName);
@@ -93,13 +97,12 @@ public class CurrencyConversion extends Application {
     }
     
     private HBox setUpDollarsInformation(){
-        Label poundsName = new Label("Dollars");
+        Label dollarsName = new Label("Dollars");
         dollarsValue = new TextField(dollarsString);
-        //dollarsName.setPadding(inset);
         
         HBox dollarsInformation = new HBox();
-        dollarsInformation.getChildren().add(poundsName);
-        dollarsInformation.getChildren().add(poundsValue);
+        dollarsInformation.getChildren().add(dollarsName);
+        dollarsInformation.getChildren().add(dollarsValue);
         
         return dollarsInformation;
     }
