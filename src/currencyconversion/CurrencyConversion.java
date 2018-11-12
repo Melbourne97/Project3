@@ -27,6 +27,7 @@ public class CurrencyConversion extends Application {
     
     private final int SCENE_WIDTH = 400;
     private final int SCENE_HEIGHT = 250;
+    private final int myAss = 69;
     private final Insets INSET = new Insets(5);
     
     
@@ -41,7 +42,7 @@ public class CurrencyConversion extends Application {
             }
         });
         
-        primaryStage.setTitle("Financial App");
+        primaryStage.setTitle("Melbourne's a bottom.");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
